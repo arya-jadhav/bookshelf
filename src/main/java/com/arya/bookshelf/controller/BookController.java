@@ -65,4 +65,18 @@ public class BookController {
         favService.saveFavourite(favList);
         return "redirect:/favourites";
     }
+
+    @RequestMapping("/editBook/{id}")
+    public String editBook(@PathVariable("id") int id, Model model){
+        Book b=service.getBookById(id);
+        model.addAttribute("book", b);
+        return "bookEdit";
+    }
+
+    @RequestMapping("/deleteBook/{id}")
+    public String deleteBook(@PathVariable("id") int id){
+        service.deleteById(id);
+        return "redirect:/all_books";
+    }
+
 }
